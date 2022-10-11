@@ -30,11 +30,12 @@ function Shelf({ shelfName, shelfId }){
         shelfBooks()
     }, [shelf]);
 
-    const onChange = (e, bookId) => {
-        setShelf(e) 
-        BooksAPI.update(bookId, e)
+    async function onChange(e, bookId){
         
-        console.log(BooksAPI.getAll())
+        const book = {id: bookId}
+        await BooksAPI.update(book, e)
+        
+        setShelf(e)
     }
         
     return (

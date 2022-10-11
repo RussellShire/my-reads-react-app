@@ -10,7 +10,7 @@ function ShelfChanger({bookId, onSelect}) {
     
     return (
         <div className="book-shelf-changer">
-            <select onChange={handleChange}>
+            <select onChange={handleChange} value='move'>
                 <option value="move" disabled>Move to...</option>
                 <option value="currentlyReading">Currently Reading</option>
                 <option value="wantToRead">Want to Read</option>
