@@ -5,8 +5,10 @@ import * as BooksAPI from '../BooksAPI'
 function Shelf({ shelfName, shelfId }){
     const [books, setBooks] = useState([]);
     const [isLoading, setIsLoading] = useState(true)
+    const [shelf, setShelf] = useState('');
 
     useEffect(() => {
+        setIsLoading(true)
         async function shelfBooks(){
             const allBooks = await BooksAPI.getAll()
 
@@ -20,14 +22,20 @@ function Shelf({ shelfName, shelfId }){
                     authors: book.authors,
                     cover: book.imageLinks.thumbnail
                 }))
-            console.log(allBooks)
+            // console.log(allBooks)
             setBooks(shelfBooks)
             setIsLoading(false)
+            console.log('api fired')
         }
         shelfBooks()
-    }, []);
+    }, [shelf]);
 
-    console.log(books[0])
+    const onChange = (e, bookId) => {
+        setShelf(e) 
+        BooksAPI.update(bookId, e)
+        
+        console.log(BooksAPI.getAll())
+    }
         
     return (
         <div className="bookshelf">
@@ -37,10 +45,12 @@ function Shelf({ shelfName, shelfId }){
                         {isLoading ? 'loading' : books.map(book => {
                             return ( 
                                 <li key={book.bookId}>
-                                    <Book 
+                                    <Book
+                                        bookId={book.bookId}
                                         bookTitle={book.title}
-                                        bookAuthors={book.authors.map(author => author+' ')}
+                                        bookAuthors={book.authors.map(author => author+' ')} //This needs making a bit nicer to look at for multiple authors
                                         bookCover={book.cover}
+                                        onSelect={(e, bookId) => onChange(e, bookId)}
                                     />
                                 </li>
                             )}
