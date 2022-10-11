@@ -1,5 +1,6 @@
 import React from 'react'
-// import * as BooksAPI from './BooksAPI'
+import * as BooksAPI from './BooksAPI'
+import Book from './Book/Book'
 import './App.css'
 
 class BooksApp extends React.Component {
@@ -14,6 +15,8 @@ class BooksApp extends React.Component {
   }
 
   render() {
+    console.log(BooksAPI.getAll())
+    console.log('test')
     return (
       <div className="app">
         {this.state.showSearchPage ? (
@@ -67,6 +70,7 @@ class BooksApp extends React.Component {
                         </div>
                       </li>
                       <li>
+                        <Book bookTitle='Enders Game' bookAuthors='Orson Scott Card' bookCover='http://books.google.com/books/content?id=yDtCuFHXbAYC&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE72RRiTR6U5OUg3IY_LpHTL2NztVWAuZYNFE8dUuC0VlYabeyegLzpAnDPeWxE6RHi0C2ehrR9Gv20LH2dtjpbcUcs8YnH5VCCAH0Y2ICaKOTvrZTCObQbsfp4UbDqQyGISCZfGN&source=gbs_api' />
                         <div className="book">
                           <div className="book-top">
                             <div className="book-cover" style={{ width: 128, height: 188, backgroundImage: 'url("http://books.google.com/books/content?id=yDtCuFHXbAYC&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE72RRiTR6U5OUg3IY_LpHTL2NztVWAuZYNFE8dUuC0VlYabeyegLzpAnDPeWxE6RHi0C2ehrR9Gv20LH2dtjpbcUcs8YnH5VCCAH0Y2ICaKOTvrZTCObQbsfp4UbDqQyGISCZfGN&source=gbs_api")' }}></div>
