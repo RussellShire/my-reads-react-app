@@ -1,95 +1,72 @@
 import React, { useState, useEffect } from 'react'
 import * as BooksAPI from './BooksAPI'
 import Shelf from './Shelf/Shelf'
+import Search from './Search/Search'
 import './App.css'
+import { Route, Routes, Link } from 'react-router-dom'
 
 function BooksApp () {
-  const [showSearchPage, setShowSearchPage] = useState(false)
-    /**
-     * TODO: Instead of using this state variable to keep track of which page
-     * we're on, use the URL in the browser's address bar. This will ensure that
-     * users can use the browser's back and forward buttons to navigate between
-     * pages, as well as provide a good URL they can bookmark and share.
-     */
   const [books, setBooks] = useState([]);
   const [isLoading, setIsLoading] = useState(true)
   const [shelf, setShelf] = useState('');
 
-    useEffect(() => {
-        setIsLoading(true)
-        async function shelfBooks(){
-            const allBooks = await BooksAPI.getAll()
+  useEffect(() => {
+    setIsLoading(true)
+    async function shelfBooks(){
+      const allBooks = await BooksAPI.getAll()
 
-            const shelfBooks = [] 
+      const shelfBooks = [] 
 
-            await allBooks
-            // .filter(book => book.shelf === shelfId)
-            .map(book => shelfBooks.push({
-                    bookId: book.id,
-                    title: book.title, 
-                    authors: book.authors,
-                    cover: book.imageLinks.thumbnail,
-                    shelf: book.shelf
-                }))
-            // console.log(allBooks)
-            setBooks(shelfBooks)
-            setIsLoading(false)
-            console.log('api fired')
-        }
-        shelfBooks()
-    }, [shelf]);
-
-    async function onChange(e, bookId){
-        
-        const book = {id: bookId}
-        await BooksAPI.update(book, e)
-        
-        setShelf(e)
+      await allBooks
+      // .filter(book => book.shelf === shelfId)
+      .map(book => shelfBooks.push({
+              bookId: book.id,
+              title: book.title, 
+              authors: book.authors,
+              cover: book.imageLinks.thumbnail,
+              shelf: book.shelf
+          }))
+      // console.log(allBooks)
+      setBooks(shelfBooks)
+      setIsLoading(false)
+      console.log('api fired')
     }
+    shelfBooks()
+  }, [shelf]);
 
-    return (
-      <div className="app">
-        {showSearchPage ? (
-          <div className="search-books">
-            <div className="search-books-bar">
-              <button className="close-search" onClick={() => setShowSearchPage(false)}>Close</button>
-              <div className="search-books-input-wrapper">
-                {/*
-                  NOTES: The search from BooksAPI is limited to a particular set of search terms.
-                  You can find these search terms here:
-                  https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md
+  async function onChange(e, bookId){
+    const book = {id: bookId}
+    await BooksAPI.update(book, e)
+    
+    setShelf(e)
+  }
 
-                  However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
-                  you don't find a specific author or title. Every search is limited by search terms.
-                */}
-                <input type="text" placeholder="Search by title or author"/>
-
-              </div>
-            </div>
-            <div className="search-books-results">
-              <ol className="books-grid"></ol>
-            </div>
-          </div>
-        ) : (
+  return (
+    
+    <div className="app">
+      <Routes>
+        <Route path='/search' element={
+          <Search />
+        }/>
+            
+        <Route path='/' element={
           <div className="list-books">
             <div className="list-books-title">
               <h1>MyReads</h1>
             </div>
             <div className="list-books-content">
-              <div>
                 <Shelf shelfName='Currently Reading' shelfId='currentlyReading' onSelect={(e, bookId) => onChange(e, bookId)} books={books} isLoading={isLoading}/>
                 <Shelf shelfName='Want To Read' shelfId='wantToRead' onSelect={(e, bookId) => onChange(e, bookId)} books={books} isLoading={isLoading}/>
                 <Shelf shelfName='Read' shelfId='read' onSelect={(e, bookId) => onChange(e, bookId)} books={books} isLoading={isLoading}/>
-              </div>
             </div>
             <div className="open-search">
-              <button onClick={() => setShowSearchPage(true)}>Add a book</button>
+              <Link to='/search'><button>Add a book</button></Link>
             </div>
           </div>
-        )}
-      </div>
-    )
-  }
-
+        }/>
+      </Routes>
+    </div>
+  )
+}
 
 export default BooksApp
