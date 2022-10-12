@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
+import { Route, Routes, Link } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import Shelf from './Shelf/Shelf'
 import Search from './Search/Search'
 import './App.css'
-import { Route, Routes, Link } from 'react-router-dom'
 
 function BooksApp () {
   const [books, setBooks] = useState([]);
@@ -14,11 +14,9 @@ function BooksApp () {
     setIsLoading(true)
     async function shelfBooks(){
       const allBooks = await BooksAPI.getAll()
-
       const shelfBooks = [] 
 
       await allBooks
-      // .filter(book => book.shelf === shelfId)
       .map(book => shelfBooks.push({
               bookId: book.id,
               title: book.title, 
@@ -26,10 +24,8 @@ function BooksApp () {
               cover: book.imageLinks.thumbnail,
               shelf: book.shelf
           }))
-      // console.log(allBooks)
       setBooks(shelfBooks)
       setIsLoading(false)
-      console.log('api fired')
     }
     shelfBooks()
   }, [shelf]);
@@ -42,11 +38,10 @@ function BooksApp () {
   }
 
   return (
-    
     <div className="app">
       <Routes>
         <Route path='/search' element={
-          <Search />
+          <Search onSelect={(e, bookId) => onChange(e, bookId)} />
         }/>
             
         <Route path='/' element={
