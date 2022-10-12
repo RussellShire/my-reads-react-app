@@ -6,6 +6,14 @@ There are shelves, shelves are components that display books assigned by the use
 
 There is a search function that allows users to find books and assign them to shelves. This should update the book object on the database and be instantly reflected on the shelves. When searching the shelf should be displayed, this will not come from the database and will need to be joined up. There are limited search terms, predictive autofill would be nice UX.
 
+### To Do:
+
+- React Router
+- Search function
+- Multiple author name layout
+- Fix all shelves reloading
+- Use useContext to avoid prop drilling (see Dev Ed Video)
+
 # MyReads Project
 
 This is the starter template for the final assessment project for Udacity's React Fundamentals course. The goal of this template is to save you time by providing a static example of the CSS and HTML markup that may be used, but without any of the React code that is needed to complete the project. If you choose to start with this template, your job will be to add interactivity to the app by refactoring the static code in this template.

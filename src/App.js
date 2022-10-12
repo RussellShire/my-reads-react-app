@@ -77,9 +77,9 @@ function BooksApp () {
             </div>
             <div className="list-books-content">
               <div>
-                <Shelf shelfName='Currently Reading' shelfId='currentlyReading' onSelect={(e, bookId) => onChange(e, bookId)} books={books}/>
-                <Shelf shelfName='Want To Read' shelfId='wantToRead' onSelect={(e, bookId) => onChange(e, bookId)} books={books}/>
-                <Shelf shelfName='Read' shelfId='read' onSelect={(e, bookId) => onChange(e, bookId)} books={books}/>
+                <Shelf shelfName='Currently Reading' shelfId='currentlyReading' onSelect={(e, bookId) => onChange(e, bookId)} books={books} isLoading={isLoading}/>
+                <Shelf shelfName='Want To Read' shelfId='wantToRead' onSelect={(e, bookId) => onChange(e, bookId)} books={books} isLoading={isLoading}/>
+                <Shelf shelfName='Read' shelfId='read' onSelect={(e, bookId) => onChange(e, bookId)} books={books} isLoading={isLoading}/>
               </div>
             </div>
             <div className="open-search">

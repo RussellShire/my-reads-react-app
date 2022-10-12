@@ -1,5 +1,4 @@
 import React from 'react';
-// import { update } from '../BooksAPI';
 
 function ShelfChanger({bookId, onSelect}) {
     
