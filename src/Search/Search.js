@@ -19,16 +19,19 @@ function Search( { onSelect }){
             const matchingBooks = await search(searchInput)
             const searchResult = [] 
 
-            // console.log(await matchingBooks)
+            console.log(await matchingBooks)
 
             await matchingBooks
-            .map(book => searchResult.push({
-                bookId: book.id,
-                title: book.title, 
-                authors: book.authors,
-                cover: book.imageLinks.thumbnail,
-                shelf: book.shelf
-              }))
+            .forEach(book => {
+                if(book.id && book.title && book.authors && book.imageLinks ){ // Required because some parts of the API are incomplete
+                searchResult.push({
+                    bookId: book.id,
+                    title: book.title, 
+                    authors: book.authors,
+                    cover: book.imageLinks.thumbnail,
+                    shelf: book.shelf
+                })
+            }})
             
             setSearchBooks(searchResult)
         }
