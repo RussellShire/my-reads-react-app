@@ -9,6 +9,7 @@ There is a search function that allows users to find books and assign them to sh
 ### To Do:
 
 - Multiple author name layout (including in search)
+- Add shelf status to Search results
 - Fix all shelves reloading
 - Use useContext to avoid prop drilling (see Dev Ed Video)
 
