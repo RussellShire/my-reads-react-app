@@ -4,12 +4,16 @@ import { search } from '../BooksAPI';
 import Book from '../Book/Book'
 import searchTerms from './searchTerms';
 
-function Search( { onSelect }){
+function Search( { onSelect, shelvedBooks }){
     const [searchBooks, setSearchBooks] = useState([])
 
     async function onChange(searchInput) {
         // Checks that search terms are valid based on the limitations of the API
-        let validInput = searchTerms.map(term => term.toLowerCase().startsWith(searchInput.toLowerCase())).includes(true)
+        let validInput = searchTerms.map(term => term
+            .toLowerCase()
+            .startsWith(searchInput.toLowerCase())
+            )
+            .includes(true)
         
         if(searchInput === ''){
             validInput = false
@@ -19,7 +23,7 @@ function Search( { onSelect }){
             const matchingBooks = await search(searchInput)
             const searchResult = [] 
 
-            console.log(await matchingBooks)
+            // console.log(await matchingBooks)
 
             await matchingBooks
             .forEach(book => {
@@ -29,13 +33,15 @@ function Search( { onSelect }){
                     title: book.title, 
                     authors: book.authors,
                     cover: book.imageLinks.thumbnail,
-                    shelf: book.shelf
+                    shelf: shelvedBooks.filter(shelfBook => shelfBook.bookId === book.id).map(shelvedBook => shelvedBook.shelf)
                 })
             }})
-            
+             
             setSearchBooks(searchResult)
         }
     }
+
+
 
     return (
         <div className="search-books">
@@ -55,6 +61,23 @@ function Search( { onSelect }){
             <div className="search-books-results">
                 <ol className="books-grid">
                     {searchBooks.map(book => {
+                        let shelved = ''
+                        
+                        switch(book.shelf[0]){
+                            case 'currentlyReading':
+                                shelved = 'Currently Reading'
+                                break;
+                            case "wantToRead":
+                                shelved = 'Want to Read'
+                                break;
+                            case "read":
+                                shelved = 'Read'
+                                break;
+                            default:
+                                shelved = ''
+                                break;    
+                        }
+
                         return ( 
                             <li key={book.bookId}>
                                 <Book
@@ -64,6 +87,7 @@ function Search( { onSelect }){
                                     bookCover={book.cover}
                                     onSelect={(e, bookId) => onSelect(e, bookId)}
                                 />
+                                {shelved !== '' ? <p className='search-result-shelf'>{shelved}</p> : ''}
                             </li>
                         )}
                     )}

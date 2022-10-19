@@ -41,7 +41,7 @@ function BooksApp () {
     <div className="app">
       <Routes>
         <Route path='/search' element={
-          <Search onSelect={(e, bookId) => onChange(e, bookId)} />
+          <Search onSelect={(e, bookId) => onChange(e, bookId)} shelvedBooks={books}/>
         }/>
             
         <Route path='/' element={
