@@ -41,8 +41,6 @@ function Search( { onSelect, shelvedBooks }){
         }
     }
 
-
-
     return (
         <div className="search-books">
             <div className="search-books-bar">
@@ -67,10 +65,10 @@ function Search( { onSelect, shelvedBooks }){
                             case 'currentlyReading':
                                 shelved = 'Currently Reading'
                                 break;
-                            case "wantToRead":
+                            case 'wantToRead':
                                 shelved = 'Want to Read'
                                 break;
-                            case "read":
+                            case 'read':
                                 shelved = 'Read'
                                 break;
                             default:
@@ -80,6 +78,7 @@ function Search( { onSelect, shelvedBooks }){
 
                         return ( 
                             <li key={book.bookId}>
+                                {shelved !== '' ? <p className='search-result-shelf'>{shelved}</p> : ''}
                                 <Book
                                     bookId={book.bookId}
                                     bookTitle={book.title}
@@ -87,7 +86,6 @@ function Search( { onSelect, shelvedBooks }){
                                     bookCover={book.cover}
                                     onSelect={(e, bookId) => onSelect(e, bookId)}
                                 />
-                                {shelved !== '' ? <p className='search-result-shelf'>{shelved}</p> : ''}
                             </li>
                         )}
                     )}
