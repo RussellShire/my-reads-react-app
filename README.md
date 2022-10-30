@@ -19,14 +19,14 @@ There are shelves, shelves are components that display books assigned by the use
 
 There is a search function that allows users to find books and assign them to shelves. This should update the book object on the database and be instantly reflected on the shelves. When searching the shelf should be displayed, this will not come from the database and will need to be joined up. There are limited search terms, predictive autofill would be nice UX. -->
 
-### Still To Do:
+## Optional To Do:
 
 - Multiple author name layout (including in search)
 - Add shelf status to Search results, make this update live on search page
 - Fix all shelves reloading when books move
 - Use useContext to avoid prop drilling (see Dev Ed Video)
 
-# Credit
+## Credit
 
 This project was built from the starter template for the final assessment project for Udacity's React Fundamentals course. Tthis template provided a static example of the CSS and HTML markup, but without any of the React code needed to complete the project.
 
