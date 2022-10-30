@@ -1,59 +1,45 @@
-## Scoping
+# MY READS REACT APP
+
+This is an app that allows users to track books they're reading, want to read and have finished reading. It was adapted from a assessment project on Udacity's React Fundamentals course.
+
+# Project Specifications
+
+- There are shelves where users can place books
+- Books can be moved between shelves
+- Books can be removed entirely
+- There is a search page where users can find new books (from a server provided by Udacity - see notes below for functionality)
+- Users can add books to a shelf directly from search page
+- React Router will be used to create a single page application where the back button works in browser
+
+<!-- ## Scoping
 
 There are books, they are objects that have properties such as cover, title, author and shelf. Shelf can be assigned and reassigned by the user. Book objects are stored in a database.
 
 There are shelves, shelves are components that display books assigned by the user. Component that has a name and shelf id. Displays books that are found from the server by mapping and filtering book info onto a book component.
 
-There is a search function that allows users to find books and assign them to shelves. This should update the book object on the database and be instantly reflected on the shelves. When searching the shelf should be displayed, this will not come from the database and will need to be joined up. There are limited search terms, predictive autofill would be nice UX.
+There is a search function that allows users to find books and assign them to shelves. This should update the book object on the database and be instantly reflected on the shelves. When searching the shelf should be displayed, this will not come from the database and will need to be joined up. There are limited search terms, predictive autofill would be nice UX. -->
 
-### To Do:
+### Still To Do:
 
 - Multiple author name layout (including in search)
 - Add shelf status to Search results, make this update live on search page
-- Fix all shelves reloading
+- Fix all shelves reloading when books move
 - Use useContext to avoid prop drilling (see Dev Ed Video)
 
-# MyReads Project
+# Credit
 
-This is the starter template for the final assessment project for Udacity's React Fundamentals course. The goal of this template is to save you time by providing a static example of the CSS and HTML markup that may be used, but without any of the React code that is needed to complete the project. If you choose to start with this template, your job will be to add interactivity to the app by refactoring the static code in this template.
+This project was built from the starter template for the final assessment project for Udacity's React Fundamentals course. Tthis template provided a static example of the CSS and HTML markup, but without any of the React code needed to complete the project.
 
-Of course, you are free to start this project from scratch if you wish! Just be sure to use [Create React App](https://github.com/facebookincubator/create-react-app) to bootstrap the project.
-
-## TL;DR
+## Usage
 
 To get started developing right away:
 
 - install all project dependencies with `npm install`
 - start the development server with `npm start`
 
-## What You're Getting
+## Backend Server Instructions
 
-```bash
-├── CONTRIBUTING.md
-├── README.md - This file.
-├── SEARCH_TERMS.md # The whitelisted short collection of available search terms for you to use with your app.
-├── package.json # npm package manager file. It's unlikely that you'll need to modify this.
-├── public
-│   ├── favicon.ico # React Icon, You may change if you wish.
-│   └── index.html # DO NOT MODIFY
-└── src
-    ├── App.css # Styles for your app. Feel free to customize this as you desire.
-    ├── App.js # This is the root of your app. Contains static HTML right now.
-    ├── App.test.js # Used for testing. Provided with Create React App. Testing is encouraged, but not required.
-    ├── BooksAPI.js # A JavaScript API for the provided Udacity backend. Instructions for the methods are below.
-    ├── icons # Helpful images for your app. Use at your discretion.
-    │   ├── add.svg
-    │   ├── arrow-back.svg
-    │   └── arrow-drop-down.svg
-    ├── index.css # Global styles. You probably won't need to change anything here.
-    └── index.js # You should not need to modify this file. It is used for DOM rendering only.
-```
-
-Remember that good React design practice is to create new JS files for each component and use import/require statements to include them where they are needed.
-
-## Backend Server
-
-To simplify your development process, we've provided a backend server for you to develop against. The provided file [`BooksAPI.js`](src/BooksAPI.js) contains the methods you will need to perform necessary operations on the backend:
+Udacity provided a backend server to develop against. The provided file [`BooksAPI.js`](src/BooksAPI.js) contains the methods to perform operations on the backend:
 
 - [`getAll`](#getall)
 - [`update`](#update)
@@ -101,16 +87,3 @@ The backend API uses a fixed set of cached search results and is limited to a pa
 ## Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). You can find more information on how to perform common tasks [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
-
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
-
-# Archival Note
-
-This repository is deprecated; therefore, we are going to archive it. However, learners will be able to fork it to their personal Github account but cannot submit PRs to this repository. If you have any issues or suggestions to make, feel free to:
-
-- Utilize the https://knowledge.udacity.com/ forum to seek help on content-specific issues.
-- Submit a support ticket along with the link to your forked repository if (learners are) blocked for other reasons. Here are the links for the [retail consumers](https://udacity.zendesk.com/hc/en-us/requests/new) and [enterprise learners](https://udacityenterprise.zendesk.com/hc/en-us/requests/new?ticket_form_id=360000279131).
