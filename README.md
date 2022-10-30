@@ -2,6 +2,10 @@
 
 This is an app that allows users to track books they're reading, want to read and have finished reading. It was adapted from a assessment project on Udacity's React Fundamentals course.
 
+# Hosted
+
+https://russellshire.github.io/my-reads-react-app
+
 # Project Specifications
 
 - There are shelves where users can place books
